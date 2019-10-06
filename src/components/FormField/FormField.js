@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';

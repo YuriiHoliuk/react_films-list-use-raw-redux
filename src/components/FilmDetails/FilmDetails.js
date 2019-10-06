@@ -1,13 +1,11 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable max-len */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { store } from '../../store/index';
 
 export class FilmDetails extends Component {
   state = {
-    filmDetails: store.getState()
-      .films.find(item => String(item.id) === this.props.match.params.id),
+    filmDetails: this.findFilm(),
   }
 
   unSubscribe = null;
@@ -21,12 +19,17 @@ export class FilmDetails extends Component {
   }
 
   setFilmDetails = () => {
-    const { match } = this.props;
     this.setState({
-      filmDetails: store
-        .getState()
-        .films.find(item => String(item.id) === match.params.id),
+      filmDetails: this.findFilm(),
     });
+  }
+
+  findFilm() {
+    const { match } = this.props;
+    const { id } = match.params;
+
+    return store.getState().films
+      .find(film => String(film.id) === id);
   }
 
   render() {
@@ -73,3 +76,11 @@ export class FilmDetails extends Component {
     );
   }
 }
+
+FilmDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+};

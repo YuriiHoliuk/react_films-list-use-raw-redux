@@ -50,7 +50,7 @@ export const FilmCard = (props) => {
 
 FilmCard.propTypes = {
   title: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   description: PropTypes.string,
   imgUrl: PropTypes.string.isRequired,
   imdbUrl: PropTypes.string.isRequired,
