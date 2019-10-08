@@ -3,16 +3,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { store } from '../../store';
 
+function findFilm(filmList, id) {
+  return filmList.films.find(film => String(film.id) === id);
+}
+
 export class FilmDetails extends Component {
 state = {
-  film: store.getState().films
-    .find(f => String(f.id) === this.props.match.params.id),
+  film: findFilm(store.getState(), this.props.match.params.id),
 }
 
 componentDidMount() {
   this.unsubscribe = store
     .subscribe(() => this.setState({
-      film: store.getState().films.find(film => String(film.id) === this.props.match.params.id)
+      film: findFilm(store.getState(), this.props.match.params.id),
     }));
 }
 
@@ -29,7 +32,6 @@ render() {
       imdbUrl,
     },
   } = this.state;
-  console.log(this.state.film)
   return (
     <div className="card">
       <div className="card-image">
@@ -67,12 +69,10 @@ render() {
 }
 
 FilmDetails.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  imgUrl: PropTypes.string.isRequired,
-  imdbUrl: PropTypes.string.isRequired,
-};
-
-FilmDetails.defaultProps = {
-  description: '',
+  film: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    imgUrl: PropTypes.string.isRequired,
+    imdbUrl: PropTypes.string.isRequired,
+  }).isRequired,
 };

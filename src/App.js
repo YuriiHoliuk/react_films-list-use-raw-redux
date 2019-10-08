@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuidv4';
 import './App.scss';
 import {
   HashRouter,
@@ -31,10 +32,9 @@ export class App extends Component {
   }
 
   handleAddFilm = (newFilm) => {
-    const { films } = store.getState();
     store.dispatch(addNewFilm({
       ...newFilm,
-      id: films[films.length - 1].id + 1,
+      id: uuid(),
     }));
   };
 
