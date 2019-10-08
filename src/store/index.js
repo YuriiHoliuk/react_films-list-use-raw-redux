@@ -37,11 +37,11 @@ export const store = createStore(reducer);
 //
 // store.dispatch(addNewFilm({ title: 'Avengers' }));
 //
-// store.subscribe((state) => {
-//   console.log(state.films);
-// });
+store.subscribe((state) => {
+  console.log(state.films);
+});
 // unsubscribe1();
 //
 // store.dispatch(addNewFilm({ title: 'Spider-Man' }));
-//
+
 // console.log('STATE', store.getState());
