@@ -43,5 +43,5 @@ export const store = createStore(reducer);
 // unsubscribe1();
 //
 // store.dispatch(addNewFilm({ title: 'Spider-Man' }));
-//
+
 // console.log('STATE', store.getState());
