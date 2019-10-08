@@ -9,6 +9,17 @@ state = {
     .find(f => String(f.id) === this.props.match.params.id),
 }
 
+componentDidMount() {
+  this.unsubscribe = store
+    .subscribe(() => this.setState({
+      film: store.getState().films.find(film => String(film.id) === this.props.match.params.id)
+    }));
+}
+
+componentWillUnmount() {
+  this.unsubscribe();
+}
+
 render() {
   const {
     film: {

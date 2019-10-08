@@ -22,6 +22,7 @@ componentWillUnmount() {
 
 render() {
   const { films } = this.state;
+  console.log(films);
   return (
     <div className="films">
       {films.map(film => (
